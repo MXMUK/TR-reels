@@ -11,7 +11,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
   });
   const vidRef = useRef(null);
   const [isCurrentVideoPaused, setIsCurrentVideoPaused] = useState(false);
-  const [openDescription, setOpenDescription] = useState(true);
+  const [openDescription, setOpenDescription] = useState(false);
 
   const { video_url, likes, comments, username } = post;
 
@@ -115,8 +115,8 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
 
           <div className="relative" onClick={() => setOpenDescription(!openDescription)}>
             <div
-              className={classNames('max-h-60 overflow-auto transition-all', {
-                'max-h-4 !overflow-hidden w-4/5': openDescription
+              className={classNames('max-h-4 overflow-hidden w-4/5 transition-all', {
+                '!max-h-60 !overflow-auto !w-full': openDescription
               })}>
               Embark on a journey of moments with our latest Instagram Reels adventure! 🚀✨ Dive
               into a world of creativity, laughter, and surprises as we unravel the extraordinary in
@@ -153,7 +153,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               Corrupti illo recusandae iure voluptas.
             </div>
 
-            {openDescription && (
+            {!openDescription && (
               <div className="absolute right-0 top-0 text-[#BEBEBE] -translate-x-1/2">...more</div>
             )}
           </div>
