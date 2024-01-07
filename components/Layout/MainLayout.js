@@ -26,7 +26,7 @@ const MainLayout = ({ children }) => {
         <MainSidebarSmall />
       </div>
 
-      <main className="md:ml-16 lg:ml-60 xl:ml-64 2xl:ml-72 overflow-hidden pt-5">{children}</main>
+      <main className="md:ml-16 lg:ml-60 xl:ml-64 2xl:ml-72 h-screen pb-14 md:pb-0">{children}</main>
     </div>
   );
 };
