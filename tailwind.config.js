@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      aspectRatio: {
+        '9/16': '9 / 16',
+      },
       keyframes: {
         lineIncreases: {
           '0%': { transform: 'translateX(-100%)' },

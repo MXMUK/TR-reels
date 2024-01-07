@@ -3,7 +3,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Home"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -14,8 +13,8 @@ const SidebarComponents = [
           d="M9.005 16.545a2.997 2.997 0 0 1 2.997-2.997A2.997 2.997 0 0 1 15 16.545V22h7V11.543L12 2 2 11.543V22h7.005Z"
           fill="none"
           stroke="currentColor"
-          stroke-linejoin="round"
-          stroke-width="2"></path>
+          strokeLinejoin="round"
+          strokeWidth="2"></path>
       </svg>
     ),
     label: 'Main',
@@ -25,7 +24,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Пошук"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -36,15 +34,15 @@ const SidebarComponents = [
           d="M19 10.5A8.5 8.5 0 1 1 10.5 2a8.5 8.5 0 0 1 8.5 8.5Z"
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></path>
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"></path>
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="16.511"
           x2="22"
           y1="16.511"
@@ -58,7 +56,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Цікаве"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -69,11 +66,11 @@ const SidebarComponents = [
           fill="none"
           points="13.941 13.953 7.581 16.424 10.06 10.056 16.42 7.585 13.941 13.953"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></polygon>
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"></polygon>
         <polygon
-          fill-rule="evenodd"
+          fillRule="evenodd"
           points="10.06 10.056 13.949 13.945 7.581 16.424 10.06 10.056"></polygon>
         <circle
           cx="12.001"
@@ -81,9 +78,9 @@ const SidebarComponents = [
           fill="none"
           r="10.5"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></circle>
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"></circle>
       </svg>
     ),
     label: 'Explore',
@@ -93,7 +90,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Reels"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -103,8 +99,8 @@ const SidebarComponents = [
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="2.049"
           x2="21.95"
           y1="7.002"
@@ -112,9 +108,9 @@ const SidebarComponents = [
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="13.504"
           x2="16.362"
           y1="2.001"
@@ -122,9 +118,9 @@ const SidebarComponents = [
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="7.207"
           x2="10.002"
           y1="2.11"
@@ -133,12 +129,12 @@ const SidebarComponents = [
           d="M2 12.001v3.449c0 2.849.698 4.006 1.606 4.945.94.908 2.098 1.607 4.946 1.607h6.896c2.848 0 4.006-.699 4.946-1.607.908-.939 1.606-2.096 1.606-4.945V8.552c0-2.848-.698-4.006-1.606-4.945C19.454 2.699 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.546 2 5.704 2 8.552Z"
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></path>
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"></path>
         <path
           d="M9.763 17.664a.908.908 0 0 1-.454-.787V11.63a.909.909 0 0 1 1.364-.788l4.545 2.624a.909.909 0 0 1 0 1.575l-4.545 2.624a.91.91 0 0 1-.91 0Z"
-          fill-rule="evenodd"></path>
+          fillRule="evenodd"></path>
       </svg>
     ),
     label: 'Reels',
@@ -148,7 +144,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Direct"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -158,8 +153,8 @@ const SidebarComponents = [
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="22"
           x2="9.218"
           y1="3"
@@ -168,8 +163,8 @@ const SidebarComponents = [
           fill="none"
           points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
           stroke="currentColor"
-          stroke-linejoin="round"
-          stroke-width="2"></polygon>
+          strokeLinejoin="round"
+          strokeWidth="2"></polygon>
       </svg>
     ),
     label: 'Messages',
@@ -179,7 +174,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Сповіщення"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -196,7 +190,6 @@ const SidebarComponents = [
     img: (
       <svg
         aria-label="Новий допис"
-        class="x1lliihq x1n2onr6 x5n08af"
         fill="currentColor"
         height="24"
         role="img"
@@ -207,15 +200,15 @@ const SidebarComponents = [
           d="M2 12v3.45c0 2.849.698 4.005 1.606 4.944.94.909 2.098 1.608 4.946 1.608h6.896c2.848 0 4.006-.7 4.946-1.608C21.302 19.455 22 18.3 22 15.45V8.552c0-2.849-.698-4.006-1.606-4.945C19.454 2.7 18.296 2 15.448 2H8.552c-2.848 0-4.006.699-4.946 1.607C2.698 4.547 2 5.703 2 8.552Z"
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"></path>
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"></path>
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="6.545"
           x2="17.455"
           y1="12.001"
@@ -223,9 +216,9 @@ const SidebarComponents = [
         <line
           fill="none"
           stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
           x1="12.003"
           x2="12.003"
           y1="6.545"

@@ -1,38 +1,56 @@
 'use client';
 
 import classNames from 'classnames';
-import { useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
+  const { ref, inView } = useInView({
+    threshold: 1
+  });
   const vidRef = useRef(null);
-  const { video_url, likes, comments } = post;
-
   const [isCurrentVideoPaused, setIsCurrentVideoPaused] = useState(false);
 
-  const playVideo = () => {
+  const { video_url, likes, comments } = post;
+
+  const playVideo = useCallback(() => {
     setIsCurrentVideoPaused(false);
     vidRef.current.play();
-  };
+  }, [vidRef]);
 
-  const pauseVideo = () => {
+  const pauseVideo = useCallback(() => {
     // Pause as well
     setIsCurrentVideoPaused(true);
     vidRef.current.pause();
-  };
+  }, [vidRef]);
+
+  const handleClick = useCallback(() => {
+    if (!inView) vidRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [inView]);
+
+  useEffect(() => {
+    if (inView) {
+      playVideo();
+    } else {
+      pauseVideo();
+    }
+  }, [inView, playVideo, pauseVideo]);
 
   return (
     <div
-      className={classNames('flex overflow-hidden w-full lg:w-2/3 xl:w-1/3 p-2 h-[90vh] gap-2', {
-        'snap-center': !isFirst,
-        'snap-end': isFirst
+      onClick={() => handleClick()}
+      className={classNames('flex h-[92vh] md:h-[85vh]', {
+        'snap-center sm:snap-start': !isFirst,
+        'snap-end sm:snap-start': isFirst
       })}>
-      <div className="grow cursor-pointer relative">
+      <div className="grow cursor-pointer relative -mr-12 md:mr-0">
         <div
           className="absolute z-40 hover:bg-opacity-30 rounded-full bg-white bg-opacity-20 p-1.5 right-0 top-0 -translate-x-1/2 translate-y-1/2"
           onClick={() => setIsMuted(!isMuted)}>
           {isMuted ? (
             <svg
               aria-label="Audio is muted"
+              stroke="#BEBEBE"
               fill="white"
               height="16"
               role="img"
@@ -40,13 +58,14 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               width="16">
               <title>Audio is muted</title>
               <path
-                clip-rule="evenodd"
+                clipRule="evenodd"
                 d="M1.5 13.3c-.8 0-1.5.7-1.5 1.5v18.4c0 .8.7 1.5 1.5 1.5h8.7l12.9 12.9c.9.9 2.5.3 2.5-1v-9.8c0-.4-.2-.8-.4-1.1l-22-22c-.3-.3-.7-.4-1.1-.4h-.6zm46.8 31.4-5.5-5.5C44.9 36.6 48 31.4 48 24c0-11.4-7.2-17.4-7.2-17.4-.6-.6-1.6-.6-2.2 0L37.2 8c-.6.6-.6 1.6 0 2.2 0 0 5.7 5 5.7 13.8 0 5.4-2.1 9.3-3.8 11.6L35.5 32c1.1-1.7 2.3-4.4 2.3-8 0-6.8-4.1-10.3-4.1-10.3-.6-.6-1.6-.6-2.2 0l-1.4 1.4c-.6.6-.6 1.6 0 2.2 0 0 2.6 2 2.6 6.7 0 1.8-.4 3.2-.9 4.3L25.5 22V1.4c0-1.3-1.6-1.9-2.5-1L13.5 10 3.3-.3c-.6-.6-1.5-.6-2.1 0L-.2 1.1c-.6.6-.6 1.5 0 2.1L4 7.6l26.8 26.8 13.9 13.9c.6.6 1.5.6 2.1 0l1.4-1.4c.7-.6.7-1.6.1-2.2z"
-                fill-rule="evenodd"></path>
+                fillRule="evenodd"></path>
             </svg>
           ) : (
             <svg
               aria-label="Audio is playing"
+              stroke="#000"
               fill="white"
               height="16"
               role="img"
@@ -60,21 +79,25 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
 
         <video
           onClick={() => (isCurrentVideoPaused ? playVideo() : pauseVideo())}
-          class="h-full w-full rounded-xl object-cover"
-          ref={vidRef}
-          // autoPlay
+          ref={(el) => {
+            vidRef.current = el;
+            ref(el);
+          }}
+          autoPlay
+          className="h-full w-screen md:aspect-[9/16] object-cover rounded-lg"
           loop
           muted={isMuted}>
           <source src={video_url} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
+        <div className=""></div>
       </div>
 
-      <div className="flex flex-col justify-end gap-6 pb-2">
+      <div className="flex flex-col justify-end gap-6 pb-2 w-12 ml-0 md:ml-4 text-xs -translate-x-0">
         <div className="flex flex-col items-center">
           <svg
             aria-label="Like"
-            class="x1lliihq x1n2onr6 xyb1xck"
             fill="currentColor"
             height="24"
             role="img"
@@ -89,8 +112,8 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
         <div className="flex flex-col items-center">
           <svg
             aria-label="Comment"
-            class="x1lliihq x1n2onr6 xyb1xck"
             fill="currentColor"
+            stroke="#BEBEBE"
             height="24"
             role="img"
             viewBox="0 0 24 24"
@@ -100,8 +123,8 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z"
               fill="none"
               stroke="currentColor"
-              stroke-linejoin="round"
-              stroke-width="2"></path>
+              strokeLinejoin="round"
+              strokeWidth="2"></path>
           </svg>
 
           {comments}
@@ -110,7 +133,6 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
         <div className="flex justify-center">
           <svg
             aria-label="Direct"
-            class="x1lliihq x1n2onr6 xyb1xck"
             fill="currentColor"
             height="24"
             role="img"
@@ -120,8 +142,8 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
             <line
               fill="none"
               stroke="currentColor"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinejoin="round"
+              strokeWidth="2"
               x1="22"
               x2="9.218"
               y1="3"
@@ -130,15 +152,14 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               fill="none"
               points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334"
               stroke="currentColor"
-              stroke-linejoin="round"
-              stroke-width="2"></polygon>
+              strokeLinejoin="round"
+              strokeWidth="2"></polygon>
           </svg>
         </div>
 
         <div className="flex justify-center">
           <svg
             aria-label="Save"
-            class="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
             height="24"
             role="img"
@@ -149,16 +170,15 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               fill="none"
               points="20 21 12 13.44 4 21 4 3 20 3 20 21"
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"></polygon>
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"></polygon>
           </svg>
         </div>
 
         <div className="flex justify-center">
           <svg
             aria-label="More"
-            class="x1lliihq x1n2onr6 xyb1xck"
             fill="currentColor"
             height="24"
             role="img"
