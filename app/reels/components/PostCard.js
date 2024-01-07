@@ -116,7 +116,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
           <div className="relative" onClick={() => setOpenDescription(!openDescription)}>
             <div
               className={classNames('max-h-60 overflow-auto transition-all', {
-                'max-h-4 overflow-hidden w-4/5': openDescription
+                'max-h-4 !overflow-hidden w-4/5': openDescription
               })}>
               Embark on a journey of moments with our latest Instagram Reels adventure! 🚀✨ Dive
               into a world of creativity, laughter, and surprises as we unravel the extraordinary in
