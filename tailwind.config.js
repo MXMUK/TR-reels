@@ -11,6 +11,9 @@ module.exports = {
       aspectRatio: {
         '9/16': '9 / 16',
       },
+      transitionProperty: {
+        'height': 'height',
+      },
       keyframes: {
         lineIncreases: {
           '0%': { transform: 'translateX(-100%)' },

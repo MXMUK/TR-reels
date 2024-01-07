@@ -16,9 +16,9 @@ const MainLayout = ({ children }) => {
 
   return (
     <div>
-      {/* <div className="fixed top-0 z-[999] right-0 left-0">
-        <LoaderLine />
-      </div> */}
+      <div className="fixed top-0 z-[999] right-0 left-0">
+        {isLoading && <LoaderLine />}
+      </div>
 
       <div className="fixed top-0 h-full">
         <MainSidebar />

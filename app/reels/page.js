@@ -1,15 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PostCard from './components/PostCard';
-import allPosts from '@/__mock/MOCK_DATA';
+import allPosts from '@/__mock/MOCK_DATA'; 
 
 const ReelsPage = ({ children }) => {
   const [isMuted, setIsMuted] = useState(true);
 
   return (
     <div className="relative snap-y overflow-y-scroll h-full snap-mandatory">
-      <div className="mx-16 pb-2 gap-5 border-b border-lightBorder dark:border-darkBorder flex sm:hidden">
+      <div className="mx-16 pb-2 gap-5 border-b border-lightBorder my-5 dark:border-darkBorder hidden md:flex">
         <div className="font-bold">For you</div>
         <div className="font-bold">Following</div>
       </div>
