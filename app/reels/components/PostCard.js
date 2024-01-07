@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
+import PopUpMore from './PopUpMore';
 
 const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
   const { ref, inView } = useInView({
@@ -271,19 +272,8 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
           </svg>
         </div>
 
-        <div className="flex justify-center">
-          <svg
-            aria-label="More"
-            fill="currentColor"
-            height="24"
-            role="img"
-            viewBox="0 0 24 24"
-            width="24">
-            <title>More</title>
-            <circle cx="12" cy="12" r="1.5"></circle>
-            <circle cx="6" cy="12" r="1.5"></circle>
-            <circle cx="18" cy="12" r="1.5"></circle>
-          </svg>
+        <div className="relative flex justify-center">
+          <PopUpMore />
         </div>
 
         <div className="flex justify-center">
