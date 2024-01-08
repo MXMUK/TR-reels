@@ -33,7 +33,7 @@ const PopUpMore = () => {
             leaveTo="opacity-0">
             <Menu.Items
               static
-              className="absolute bottom-0 w-60 mb-10 md:left-0 -translate-x-full md:-translate-x-1/2 lg:translate-x-0 rounded-lg p-1 bg-[#262626] flex flex-col">
+              className="absolute bottom-0 w-60 mb-10 lg:left-0 -translate-x-full lg:translate-x-0 rounded-lg p-1 bg-[#262626] flex flex-col">
               <Menu.Item>
                 {({ active }) => (
                   <a

@@ -5,8 +5,9 @@ import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import PopUpMore from './PopUpMore';
+import nFormatter from '@/components/helpers/NumberFormatter';
 
-const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
+const PostCard = ({ post, isMuted, setIsMuted, isFirst, setCurrentVideo }) => {
   const { ref, inView } = useInView({
     threshold: 0.6
   });
@@ -14,7 +15,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
   const [isCurrentVideoPaused, setIsCurrentVideoPaused] = useState(false);
   const [openDescription, setOpenDescription] = useState(false);
 
-  const { video_url, likes, comments, username } = post;
+  const { video_url, likes, comments, username, post_id } = post;
 
   const playVideo = useCallback(() => {
     setIsCurrentVideoPaused(false);
@@ -33,16 +34,17 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
 
   useEffect(() => {
     if (inView) {
+      setCurrentVideo(post_id);
       playVideo();
     } else {
       pauseVideo();
     }
-  }, [inView, playVideo, pauseVideo]);
+  }, [inView, playVideo, pauseVideo, post_id, setCurrentVideo]);
 
   return (
     <div
       onClick={() => handleClick()}
-      className={classNames('flex h-[92vh] md:aspect-[9/16] md:h-[85vh] snap-start', {
+      className={classNames('flex h-[92vh] md:aspect-[9/16] sm:h-[85vh] snap-start', {
         'snap-start md:snap-center': !isFirst,
         'snap-start md:snap-end': isFirst
       })}>
@@ -164,8 +166,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"></path>
               </svg>
-
-              {likes}
+              2k
             </div>
 
             <div className="flex gap-1 items-center">
@@ -173,8 +174,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
                 <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"></path>
                 <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z"></path>
               </svg>
-
-              {likes}
+              1k
             </div>
 
             <div className="flex gap-1 items-center">
@@ -183,8 +183,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
                   fillRule="evenodd"
                   d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"></path>
               </svg>
-
-              {likes}
+              345
             </div>
           </div>
         </div>
@@ -202,7 +201,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
             <title>Like</title>
             <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z"></path>
           </svg>
-          {likes}
+          {nFormatter(likes)}
         </div>
 
         <div className="flex flex-col items-center">
@@ -223,7 +222,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst }) => {
               strokeWidth="2"></path>
           </svg>
 
-          {comments}
+          {nFormatter(comments)}
         </div>
 
         <div className="flex justify-center">
