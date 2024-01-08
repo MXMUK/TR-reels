@@ -44,7 +44,7 @@ const PostCard = ({ post, isMuted, setIsMuted, isFirst, setCurrentVideo }) => {
   return (
     <div
       onClick={() => handleClick()}
-      className={classNames('flex h-[92vh] md:aspect-[9/16] sm:h-[85vh] snap-start', {
+      className={classNames('flex h-[92vh] md:aspect-[9/16] snap-start', {
         'snap-start md:snap-center': !isFirst,
         'snap-start md:snap-end': isFirst
       })}>
