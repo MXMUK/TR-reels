@@ -6,10 +6,7 @@ import allPosts from '@/__mock/MOCK_DATA';
 
 const ReelsPage = () => {
   const [isMuted, setIsMuted] = useState(true);
-  const [videoStack, setVideoStack] = useState(() => {
-    const shuffled = allPosts.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, 5);
-  });
+  const [videoStack, setVideoStack] = useState(() => allPosts.slice(0, 5));
   const [currentVideo, setCurrentVideo] = useState();
 
   useEffect(() => {
@@ -29,14 +26,14 @@ const ReelsPage = () => {
       </div>
 
       <div className="flex items-center gap-4 flex-col mb-[8vh]">
-        {videoStack.map((post) => (
+        {videoStack.map((post, i) => (
           <PostCard
             setCurrentVideo={setCurrentVideo}
             isLast={allPosts[allPosts.length] === post}
             isFirst={allPosts[0] === post}
             setIsMuted={setIsMuted}
             isMuted={isMuted}
-            key={post.post_id}
+            key={i}
             post={post}
           />
         ))}
